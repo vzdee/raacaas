@@ -1,0 +1,711 @@
+/* Variables CSS */
+:root {
+    --primary-color: #104d97;
+    --secondary-color: #46A2FD;
+    --hover-color: #5160d0;
+    --background-color: #f2f2f2;
+    --text-color: #ffffff;
+    --font-family: 'Roboto', sans-serif;
+    --transition: 0.3s ease;
+    --border-color: #083b73;
+    --table-header-bg: #007BFF;
+    --table-row-hover: #f1f1f1;
+    --table-row-alt: #f9f9f9;
+    --dashboard-title-bg: #155db8;
+    --text-color2: #545454;
+}
+/* Reset global styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: var(--font-family);
+    transition: all var(--transition);
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: url('../img/bg.gif') center/cover no-repeat fixed;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit; /* Usa el mismo fondo */
+    filter: blur(10px); /* Ajusta la intensidad del desenfoque */
+    z-index: -1; /* Asegura que el desenfoque quede detrás del contenido */
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--primary-color);
+    padding: 15px 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 2px solid var(--border-color); /* Usar variable */
+}
+
+.header .logo img {
+    max-height: 60px;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: color var(--transition), transform var(--transition);
+}
+
+nav ul li a:hover {
+    color: var(--hover-color);
+    transform: scale(1.1);
+    background-color: rgba(81, 96, 208, 0.2);
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+    nav ul li a {
+        font-size: 14px;
+    }
+}
+
+/* Sección General */
+section {
+    padding: 120px 80px;
+    text-align: center;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Sección Nosotros */
+#nosotros {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.historia {
+    display: flex;
+    flex-direction: row; /* Alineación horizontal */
+    justify-content: space-between;
+    align-items: center; /* Alineación vertical */
+    width: 90%; /* Aumentar el ancho del contenedor */
+    gap: 20px;
+    margin: auto; /* Centrar el contenedor */
+}
+
+.subtit {
+    font-size: 50px;
+    color: var(--text-color);
+    margin-bottom: 50px;
+}
+
+.texto p {
+    font-size: 20px;
+    color: var(--text-color); /* Reemplazada la variable redundante */
+    text-align: justify;
+    margin-bottom: 40px;
+    justify-content: left;
+}
+
+.historia .imagen img {
+    width: 125%; /* Usar todo el ancho disponible */
+    max-width: 100%; /* Ajuste para evitar valores no válidos */
+    height: auto; /* Mantener la proporción de la imagen */
+    margin: 0 auto; /* Centrar la imagen */
+    align-self: center; /* Asegurar alineación vertical */
+}
+
+/* Sección Servicios */
+.servicio {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+    color: #ffffff;
+}
+
+.imagen-servicio {
+    width: 40%;
+    text-align: center;
+    padding: 20px;
+    background-color: var(--background-color);
+    border-radius: 18px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform var(--transition);
+}
+
+.imagen-servicio img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.imagen-servicio p {
+    font-size: 18px;
+    margin-top: 20px;
+    color: var(--text-color2); /* Reemplazada la variable redundante */
+}
+
+.imagen-servicio:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos de Títulos */
+h1, h2 {
+    font-weight: 700;
+    margin-bottom: 50px;
+}
+
+h1 {
+    color: var(--text-color);
+    margin-bottom: 50px;
+    font-size: 50px;
+}
+
+h2 {
+    color: var(--text-color);
+    margin-bottom: 50px;
+    font-size: 35px;
+    margin-top: 30px;
+}
+
+/* Desplazamiento suave */
+html {
+    scroll-behavior: smooth;
+}
+/* ------------------------------------------------------------------------- */
+.login-page{
+    width: 100%;
+    padding: 100px;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.contenedor__todo{
+    width: 100%;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
+}
+
+.caja__trasera{
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(30px);
+    background-color: rgba(0, 128, 255, 0.5);
+
+}
+
+.caja__trasera div{
+    margin: 100px 40px;
+    color: white;
+    transition: all 500ms;
+}
+
+
+.caja__trasera div p,
+.caja__trasera button{
+    margin-top: 30px;
+}
+
+.caja__trasera div h3{
+    font-weight: 400;
+    font-size: 26px;
+}
+
+.caja__trasera div p{
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.caja__trasera button{
+    padding: 10px 40px;
+    border: 2px solid #fff;
+    font-size: 14px;
+    background: transparent;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    transition: all 300ms;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.caja__trasera button:hover{
+    background: #fff;
+    color: var(--secondary-color);
+    transform: translateY(-2px); /* Efecto de elevación */
+}
+
+/* Formularios */
+.contenedor__login-register{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    top: -185px;
+    left: 10px;
+
+    /*La transicion va despues del codigo JS*/
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.contenedor__login-register form{
+    width: 100%;
+    padding: 80px 20px;
+    background: white;
+    position: absolute;
+    border-radius: 20px;
+}
+
+.contenedor__login-register form h2{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+}
+
+.contenedor__login-register form input,
+.contenedor__login-register form select {
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background: var(--background-color);
+    font-size: 16px;
+    outline: none;
+    border-radius: 8px;
+    transition: border-color var(--transition);
+}
+
+.contenedor__login-register form input:focus,
+.contenedor__login-register form select:focus {
+    border-color: var(--secondary-color);
+}
+
+.contenedor__login-register form button{
+    padding: 10px 40px;
+    margin-top: 40px;
+    border: none;
+    font-size: 14px;
+    background: var(--secondary-color);
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+}
+
+.formulario__login{
+    opacity: 1;
+    display: block;
+}
+.formulario__register{
+    display: none;
+}
+
+
+@media screen and (max-width: 850px){
+
+    main{
+        margin-top: 50px;
+    }
+
+    .caja__trasera{
+        max-width: 350px;
+        height: 300px;
+        flex-direction: column;
+        margin: auto;
+        padding: 20px; /* Ajuste de padding */
+    }
+
+    .caja__trasera div{
+        margin: 0px;
+        position: absolute;
+    }
+
+    /*Formularios*/
+    .contenedor__login-register{
+        top: -10px;
+        left: -5px;
+        margin: auto;
+        padding: 10px; /* Ajuste de padding */
+    }
+
+    .contenedor__login-register form{
+        position: relative;
+    }
+}
+/* ------------------------------------------------------------------------- */
+.container-dashboard{
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 70px;
+}
+
+.page-title {
+    padding: 20px;
+    background-color: var(--dashboard-title-bg); /* Usar variable */
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+}
+
+/* Estilo de la tabla de usuarios */
+.users-table {
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 0 0 8px 8px; /* Bordes redondeados solo en la parte inferior */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    margin-top: -1px; /* Se quita el espacio entre el título y la tabla */
+    text-align: center;
+}
+
+.users-table th, .users-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.users-table th {
+    background-color: var(--table-header-bg); /* Usar variable */
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.users-table tr:nth-child(even) {
+    background-color: var(--table-row-alt); /* Usar variable */
+}
+
+.users-table tr:hover {
+    background-color: var(--table-row-hover); /* Usar variable */
+}
+
+.users-table td {
+    color: #000000;
+}
+
+.services-title {
+    padding: 20px;
+    background-color: var(--dashboard-title-bg); /* Usar variable */
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+}
+
+/* Estilo de la tabla de usuarios */
+.services-table {
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 0 0 8px 8px; /* Bordes redondeados solo en la parte inferior */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    margin-top: -1px; /* Se quita el espacio entre el título y la tabla */
+}
+
+.services-table th, .services-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.services-table th {
+    background-color: var(--table-header-bg); /* Usar variable */
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.services-table tr:nth-child(even) {
+    background-color: var(--table-row-alt); /* Usar variable */
+}
+
+.services-table tr:hover {
+    background-color: var(--table-row-hover); /* Usar variable */
+}
+
+.services-table td {
+    color: #000000;
+}
+/* ------------------------------------------------------------------------- */
+.profile-page {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+
+.profile-container {
+    background: #f2f2f2ff;
+    width: 80%;
+    max-width: 800px;
+    margin: auto;
+    padding: 70px;
+    text-align: center;
+    margin-top: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+.profile-box{
+    margin-bottom: 10px;
+    background-color: #f2f2f2;
+    color: rgb(0, 0, 0);
+    padding: 20px;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 3px solid #0f60b2;
+    object-fit: cover;
+}
+
+.profile-name {
+    font-size: 22px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.profile-role {
+    font-size: 16px;
+    color: #3a3a3a;
+}
+
+.section-title{
+    font-size: 25px;
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.form-group{
+    font-weight: 600;
+    font-size: 14px;
+    color: #555;
+    margin-top: 30px;
+}
+
+.label-input{
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+}
+
+.btn-update {
+    margin-top: 20px;
+    width: 100%;
+    padding: 10px;
+    background-color: #1067bd;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.input-field {
+    margin-top: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    transition: border 0.3s;
+}
+
+.form-group input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.btn-update:hover {
+    background-color: #2b95ff;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .profile-container {
+        width: 95%;
+    }
+}
+/* ------------------------------------------------------------------------- */
+.alta-page{
+    justify-content: center;
+    align-items: center;
+}
+
+.container-alta{
+    display: flex; /* Cambiar a flexbox para mejor alineación */
+    flex-direction: row; /* Alinear los elementos en una fila horizontal */
+    justify-content: space-between; /* Espaciado uniforme entre los elementos */
+    align-items: stretch; /* Asegurar que todos los elementos tengan la misma altura */
+    gap: 10px; /* Espaciado entre los elementos */
+}
+
+.container-empleados, .register-alta {
+    flex: 1; /* Permitir que ambos contenedores ocupen el mismo espacio */
+    display: flex;
+    flex-direction: column; /* Asegurar que el contenido interno se alinee verticalmente */
+    justify-content: space-between; /* Distribuir el contenido interno */
+}
+
+.container-empleados, .register-alta{
+    width: 100%;
+    margin: auto;
+    padding: 70px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.empleados-table {
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 0 0 8px 8px; /* Bordes redondeados solo en la parte inferior */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    margin-top: -1px; /* Se quita el espacio entre el título y la tabla */
+    text-align: center;
+}
+.empleados-title {
+    padding: 20px;
+    background-color: #155db8;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+}
+
+.empleados-table th{
+    background-color: #007BFF;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.empleados-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.alta-title{
+    padding: 20px;
+    background-color: #155db8;
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
+}
+
+/* Formulario */
+.alta-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+    background-color: #F2F2F2;
+    border-radius: 0 0 8px 8px; /* Bordes redondeados solo en la parte inferior */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.alta-form label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #555;
+}
+
+.alta-form input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    width: 100%;
+    transition: border 0.3s;
+}
+
+.alta-form input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Botón */
+.btn-alta {
+    width: 100%;
+    padding: 10px;
+    background-color: #1067bd;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, box-shadow 0.3s;
+}
+
+.btn-alta:hover {
+    background-color: #2b95ff;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .container-alta {
+        flex-direction: column; /* Alinear los elementos en una columna vertical */
+    }
+    .container-empleados, .register-alta {
+        width: 100%;
+    }
+}
