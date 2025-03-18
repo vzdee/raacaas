@@ -27,10 +27,4 @@ if (!$usuario) {
     exit();
 }
 
-//Actualizar datos del usuario al cambiar algo
-$_SESSION["Rol"] = $usuario["Rol"];
-if ($_SESSION["Rol"] !== "admin") {
-    header("Location: services.php"); // Redirigir si no es admin
-    exit();
-}
 ?>
