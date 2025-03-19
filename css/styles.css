@@ -711,22 +711,61 @@ html {
 }
 /* ------------------------------------------------------------------------- */
 .mis-servicios-page {
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
+    background-color: var(--dashboard-title-bg); /* Usar variable */
+    color: white;
+    text-align: center;
+    font-size: 24px;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados solo en la parte superior */
 }
 
 .mis-servicios-page h2 {
     text-align: center;
     font-size: 30px;
-    color: #000000;
+    color: #ffffff;
     margin-bottom: 20px;
 }
 
 .mis-servicios-page h3 {
     text-align: center;
     font-size: 24px;
-    color: #000000;
+    color: #ffffff;
     margin-bottom: 20px;
 }
+
+.mis-servicios-page table {
+    width: 100%;
+    max-width: 1200px; /* Limitar el ancho máximo de la tabla */
+    margin: 20px auto; /* Centrar la tabla horizontalmente y agregar margen superior/inferior */
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-collapse: collapse;
+    overflow: hidden; /* Asegurar que los bordes redondeados se apliquen */
+}
+
+.mis-servicios-page th, .mis-servicios-page td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.mis-servicios-page th {
+    background-color: var(--table-header-bg); /* Usar variable */
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.mis-servicios-page tr:nth-child(even) {
+    background-color: var(--table-row-alt); /* Usar variable */
+}
+
+.mis-servicios-page tr:hover {
+    background-color: var(--table-row-hover); /* Usar variable */
+}
+
+.mis-servicios-page td {
+    color: #000000;
+}
+
