@@ -709,3 +709,24 @@ html {
         width: 100%;
     }
 }
+/* ------------------------------------------------------------------------- */
+.mis-servicios-page {
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.mis-servicios-page h2 {
+    text-align: center;
+    font-size: 30px;
+    color: #000000;
+    margin-bottom: 20px;
+}
+
+.mis-servicios-page h3 {
+    text-align: center;
+    font-size: 24px;
+    color: #000000;
+    margin-bottom: 20px;
+}
