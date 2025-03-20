@@ -18,6 +18,7 @@ require_once "layout/auths/session_check.php"
         <div class="profile-box">
             <img src="img/avatar.png" alt="Foto de perfil" class="profile-avatar">
             <h2 class="profile-name"><?= htmlspecialchars($usuario['Nombre'] . ' ' . $usuario['Apellido']) ?></h2>
+            <p class="profile-role">ID Usuario: <?= htmlspecialchars($usuario['IDUsuario']) ?></p>
             <p class="profile-role">Rol: <?= htmlspecialchars($usuario['TipoUsuario']) ?></p>
         </div>
 

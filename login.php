@@ -29,7 +29,7 @@ require "layout/partials/header.php";
             <!--Formulario de Login y registro-->
             <div class="contenedor__login-register">
                 <!--Login-->
-            <form action="layout/auths/login_auth.php" method="POST" class="formulario__login">
+            <form action="layout/auths/loging_acc.php" method="POST" class="formulario__login">
                 <h2>Iniciar Sesión</h2>
                 <input type="correo" name="correo" placeholder="correo" required>
                 <input type="password" name="password" placeholder="contrasena" required>
@@ -38,7 +38,7 @@ require "layout/partials/header.php";
 
 
                 <!--Register-->
-            <form action="layout/auths/register_auth.php" method="POST" class="formulario__register">
+            <form action="layout/auths/register_acc.php" method="POST" class="formulario__register">
                 <h2>Regístrarse</h2>
                 <input type="text" name="nombre" placeholder="nombre" required>
                 <span class="error" id="errorNombre"></span>
