@@ -1,7 +1,7 @@
 <?php
 require "layout/partials/dasheader.php";
-require "layout/config/db.php";
-require_once "layout/auths/session.php"
+require "layout/config/database.php";
+require_once "layout/auths/session_check.php"
 ?>
 
 <!DOCTYPE html>
@@ -17,8 +17,8 @@ require_once "layout/auths/session.php"
     <h3 class="section-title">Información Personal</h3>
         <div class="profile-box">
             <img src="img/avatar.png" alt="Foto de perfil" class="profile-avatar">
-            <h2 class="profile-name"><?= htmlspecialchars($usuario['Nombre']) ?></h2>
-            <p class="profile-role">Rol: <?= htmlspecialchars($usuario['Rol']) ?></p>
+            <h2 class="profile-name"><?= htmlspecialchars($usuario['Nombre'] . ' ' . $usuario['Apellido']) ?></h2>
+            <p class="profile-role">Rol: <?= htmlspecialchars($usuario['TipoUsuario']) ?></p>
         </div>
 
         <div class="profile-content">
@@ -29,16 +29,21 @@ require_once "layout/auths/session.php"
                 </div>
 
                 <div class="form-group">
+                    <label class="label-input">Apellido:</label>
+                    <input type="text" name="apellido" class="input-field" value="<?= htmlspecialchars($usuario['Apellido']) ?>" required>
+                </div>
+
+                <div class="form-group">
                     <label class="label-input">Correo:</label>
                     <input type="email" name="correo" class="input-field" value="<?= htmlspecialchars($usuario['Correo']) ?>" required>
                 </div>
 
                 <div class="form-group">
                     <label class="label-input">Número Telefónico:</label>
-                    <input type="tel" name="telefono" class="input-field" value="<?= htmlspecialchars($usuario['NumeroTel']) ?>" required>
+                    <input type="tel" name="telefono" class="input-field" value="<?= htmlspecialchars($usuario['Telefono']) ?>" required>
                 </div>
 
-                <?php if ($usuario['Rol'] === 'Empleado' || $usuario['Rol'] === 'Administrador'): ?>
+                <?php if ($usuario['TipoUsuario'] === 'Empleado' || $usuario['TipoUsuario'] === 'Admin'): ?>
                     <div class="form-group">
                         <label class="label-input">NSS:</label>
                         <input type="text" name="nss" class="input-field" value="<?= htmlspecialchars($usuario['NSS']) ?>">

@@ -1,8 +1,9 @@
 <?php
+verificarAcceso(["Admin"]);
 require "layout/partials/dasheader.php";
-require "layout/auths/session.php";
-require "layout/config/db.php";
-require "layout/cons/consultas.php";
+require "layout/auths/session_check.php";
+require "layout/config/database.php";
+require "layout/cons/services_cons.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

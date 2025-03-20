@@ -1,54 +1,62 @@
 <?php
-require "../config/db.php"; // Conexión a la BD
 session_start();
+require "../config/database.php"; // Conectar a la BD
 
-// Verificar si el usuario está autenticado
-if (!isset($_SESSION['IDCuenta'])) {
-    header("Location: login.php");
+// Verificar si el usuario ha iniciado sesión
+if (!isset($_SESSION["IDUsuario"])) {
+    header("Location: ../login.php");
     exit();
 }
 
-$IDCuenta = $_SESSION['IDCuenta']; // Se obtiene el ID desde la sesión
+$IDCuenta = $_SESSION["IDUsuario"];
 
-// Obtener los datos enviados desde el formulario
-$nombre = $_POST['nombre'];
-$correo = $_POST['correo'];
-$telefono = $_POST['telefono'];
-$nss = $_POST['nss'] ?? null;
-$rfc = $_POST['rfc'] ?? null;
+// Verificar si se envió el formulario
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Recibir datos del formulario
+    $nombre = trim($_POST["nombre"]);
+    $apellido = trim($_POST["apellido"]);
+    $correo = trim($_POST["correo"]);
+    $telefono = trim($_POST["telefono"]);
+    $nss = isset($_POST["nss"]) ? trim($_POST["nss"]) : null;
+    $rfc = isset($_POST["rfc"]) ? trim($_POST["rfc"]) : null;
 
-try {
-    // Iniciar transacción para asegurar que ambos cambios se hagan correctamente
-    $conn->beginTransaction();
+    try {
+        // Iniciar una transacción
+        $conn->beginTransaction();
 
-    // Actualizar la tabla "cuentas"
-    $sql = "UPDATE cuentas SET Nombre = ?, Correo = ?, NumeroTel = ? WHERE IDCuenta = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$nombre, $correo, $telefono, $IDCuenta]);
+        // Actualizar la tabla usuario
+        $sqlUsuario = "UPDATE usuario SET Nombre = :nombre, Apellido = :apellido, Correo = :correo, Telefono = :telefono WHERE IDUsuario = :id";
+        $stmtUsuario = $conn->prepare($sqlUsuario);
+        $stmtUsuario->bindParam(":nombre", $nombre);
+        $stmtUsuario->bindParam(":apellido", $apellido);
+        $stmtUsuario->bindParam(":correo", $correo);
+        $stmtUsuario->bindParam(":telefono", $telefono);
+        $stmtUsuario->bindParam(":id", $IDCuenta);
+        $stmtUsuario->execute();
 
-    // Verificar si el usuario tiene rol de "Empleado" antes de actualizar NSS y RFC
-    if (!empty($nss) && !empty($rfc)) {
-        $sqlEmpleado = "UPDATE empleados SET NSS = ?, RFC = ? WHERE IDCuenta = ?";
-        $stmtEmpleado = $conn->prepare($sqlEmpleado);
-        $stmtEmpleado->execute([$nss, $rfc, $IDCuenta]);
+        // Si el usuario es empleado/admin, actualizar NSS y RFC en la tabla empleado
+        if (!empty($nss) && !empty($rfc)) {
+            $sqlEmpleado = "UPDATE empleado SET NSS = :nss, RFC = :rfc WHERE IDEmpleado = :id";
+            $stmtEmpleado = $conn->prepare($sqlEmpleado);
+            $stmtEmpleado->bindParam(":nss", $nss);
+            $stmtEmpleado->bindParam(":rfc", $rfc);
+            $stmtEmpleado->bindParam(":id", $IDCuenta);
+            $stmtEmpleado->execute();
+        }
+
+        // Confirmar la transacción
+        $conn->commit();
+
+        // Redirigir con mensaje de éxito
+        header("Location: ../../profile.php?success=1");
+        exit();
+    } catch (Exception $e) {
+        // Revertir la transacción en caso de error
+        $conn->rollBack();
+        die("Error al actualizar los datos: " . $e->getMessage());
     }
-
-    // Confirmar transacción
-    $conn->commit();
-
-    // Actualizar la sesión con los nuevos datos para que se reflejen sin necesidad de cerrar sesión
-    $_SESSION['Nombre'] = $nombre;
-    $_SESSION['Correo'] = $correo;
-    $_SESSION['NumeroTel'] = $telefono;
-    
-    if (!empty($nss)) $_SESSION['NSS'] = $nss;
-    if (!empty($rfc)) $_SESSION['RFC'] = $rfc;
-
-    // Redirigir con mensaje de éxito
+} else {
     header("Location: ../../profile.php");
     exit();
-} catch (PDOException $e) {
-    $conn->rollBack();
-    die("Error en la actualización: " . $e->getMessage());
 }
 ?>

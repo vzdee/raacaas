@@ -1,5 +1,5 @@
 <?php
-require 'layout/config/db.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
+require 'layout/config/database.php'; // Asegúrate de incluir tu archivo de conexión a la base de datos
 require "layout/partials/header.php";  
 ?>
 
@@ -29,26 +29,33 @@ require "layout/partials/header.php";
             <!--Formulario de Login y registro-->
             <div class="contenedor__login-register">
                 <!--Login-->
-            <form action="layout/auths/login.php" method="POST" class="formulario__login">
+            <form action="layout/auths/login_auth.php" method="POST" class="formulario__login">
                 <h2>Iniciar Sesión</h2>
-                <input type="correo" name="correo" placeholder="Correo Electrónico" required>
-                <input type="password" name="password" placeholder="Contraseña" required>
+                <input type="correo" name="correo" placeholder="correo" required>
+                <input type="password" name="password" placeholder="contrasena" required>
                 <button type="submit">Entrar</button>
             </form>
 
 
                 <!--Register-->
-            <form action="layout/auths/register.php" method="POST" class="formulario__register">
+            <form action="layout/auths/register_auth.php" method="POST" class="formulario__register">
                 <h2>Regístrarse</h2>
-                <input type="text" name="name" placeholder="Nombre completo" required>
+                <input type="text" name="nombre" placeholder="nombre" required>
                 <span class="error" id="errorNombre"></span>
-                <input type="correo" name="correo" placeholder="Correo Electrónico" required>
-                <span class="error" id="errorNombre"></span>
-                <input type="password" name="password" placeholder="Contraseña" required>
-                <span class="error" id="errorNombre"></span>
-                <input type="text" name="numerotel" placeholder="Numero Telefonico" required>
-                <span class="error" id="errorNombre"></span>
-                <button type="submit">Registrarse</button>
+
+                <input type="text" name="apellido" placeholder="apellido" required>
+                <span class="error" id="errorApellido"></span>
+
+                <input type="email" name="correo" placeholder="correo" required>
+                <span class="error" id="errorCorreo"></span>
+
+                <input type="password" name="contrasena" placeholder="contrasena" required>
+                <span class="error" id="errorContrasena"></span>
+
+                <input type="text" name="telefono" placeholder="telefono" required>
+                <span class="error" id="errorTelefono"></span>
+
+                <button type="submit">Registrar</button>
             </form>
             </div>
         </div>

@@ -1,6 +1,7 @@
 <?php
-require "layout/auths/session.php";// Conexión a la base de datos
-require "layout/cons/consultas.php";  // Incluir el archivo que contiene la consulta
+verificarAcceso(["Admin"]);
+require "layout/auths/session_check.php";// Conexión a la base de datos
+require "layout/cons/dash_cons.php";  // Incluir el archivo que contiene la consulta
 require 'layout/partials/dasheader.php'; 
 ?>
 <!DOCTYPE html>
@@ -20,6 +21,7 @@ require 'layout/partials/dasheader.php';
                     <tr>
                         <th>ID Empleado</th>
                         <th>Nombre</th>
+                        <th>Apellido</th>
                         <th>Correo</th>
                         <th>Telefono</th>
                         <th>RFC</th>
@@ -30,10 +32,11 @@ require 'layout/partials/dasheader.php';
                     <?php
                     foreach ($empleados as $empleado) {
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($empleado['IDEmpleado']) . "</td>";
+                        echo "<td>" . htmlspecialchars($empleado['IDUsuario']) . "</td>";
                         echo "<td>" . htmlspecialchars($empleado['Nombre']) . "</td>";
+                        echo "<td>". htmlspecialchars($empleado["Apellido"]) ."</td>";
                         echo "<td>" . htmlspecialchars($empleado['Correo']) . "</td>";
-                        echo "<td>" . htmlspecialchars($empleado['NumeroTel']) . "</td>";
+                        echo "<td>" . htmlspecialchars($empleado['Telefono']) . "</td>";
                         echo "<td>" . htmlspecialchars($empleado['RFC']) . "</td>";
                         echo "<td>" . htmlspecialchars($empleado['FechaRegistro']) . "</td>";
                         echo "</tr>";
@@ -102,10 +105,10 @@ require 'layout/partials/dasheader.php';
                     <?php
                     foreach ($clientes as $cliente) {
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($cliente['IDCliente']) . "</td>";
+                        echo "<td>" . htmlspecialchars($cliente['IDUsuario']) . "</td>";
                         echo "<td>" . htmlspecialchars($cliente['Nombre']) . "</td>";
                         echo "<td>" . htmlspecialchars($cliente['Correo']) . "</td>";
-                        echo "<td>" . htmlspecialchars($cliente['NumeroTel']) . "</td>";
+                        echo "<td>" . htmlspecialchars($cliente['Telefono']) . "</td>";
                         echo "<td>" . htmlspecialchars($cliente['FechaRegistro']) . "</td>";
                         echo "</tr>";
                     }

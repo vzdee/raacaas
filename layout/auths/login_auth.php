@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../config/db.php'; // Conexión a la base de datos
+require '../config/database.php'; // Conexión a la base de datos
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = trim($_POST["correo"]);
@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     try {
         // Verificar usuario en 'cuentas'
-        $sql = "SELECT IDCuenta, Nombre, Contrasena, NumeroTel, Rol FROM cuentas WHERE Correo = :correo";
+        $sql = "SELECT IDUsuario, Nombre, Apellido, Contrasena, Telefono, TipoUsuario FROM Usuario WHERE Correo = :correo";
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':correo', $correo);
         $stmt->execute();
@@ -18,9 +18,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Regenerar ID de sesión por seguridad
             session_regenerate_id(true);
             
-            $_SESSION["IDCuenta"] = $cuentas["IDCuenta"];
+            $_SESSION["IDUsuario"] = $cuentas["IDUsuario"];
             $_SESSION["Nombre"] = $cuentas["Nombre"];
-            $_SESSION["Rol"] = $cuentas["Rol"]; // Guardar el rol en la sesión
+            $_SESSION["TipoUsuario"] = $cuentas["TipoUsuario"]; // Guardar el rol en la sesión
             
             // Redirigir según el rol
             switch ($cuentas["Rol"]) {
