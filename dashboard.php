@@ -1,6 +1,6 @@
 <?php
+require_once "layout/auths/session_check.php";// Conexión a la base de datos
 verificarAcceso(["Admin"]);
-require "layout/auths/session_check.php";// Conexión a la base de datos
 require "layout/cons/dash_cons.php";  // Incluir el archivo que contiene la consulta
 require 'layout/partials/dasheader.php'; 
 ?>

@@ -1,9 +1,9 @@
 <?php
-verificarAcceso(["Admin"]);
 require "layout/partials/dasheader.php";
-require "layout/auths/session_check.php";
+require_once "layout/auths/session_check.php";
+verificarAcceso(["Admin"]);
 require "layout/config/database.php";
-require "layout/cons/services_cons.php";
+require "layout/cons/dash_cons.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,6 +25,7 @@ require "layout/cons/services_cons.php";
                         <tr>
                             <th>ID Empleado</th>
                             <th>Nombre</th>
+                            <th>Apellido</th>
                             <th>Correo</th>
                             <th>Telefono</th>
                             <th>RFC</th>
@@ -37,6 +38,7 @@ require "layout/cons/services_cons.php";
                             echo "<tr>";
                             echo "<td>" . htmlspecialchars($empleado['IDEmpleado']) . "</td>";
                             echo "<td>" . htmlspecialchars($empleado['Nombre']) . "</td>";
+                            echo "<td>" . htmlspecialchars($empleado['Apellido']) . "</td>";
                             echo "<td>" . htmlspecialchars($empleado['Correo']) . "</td>";
                             echo "<td>" . htmlspecialchars($empleado['NumeroTel']) . "</td>";
                             echo "<td>" . htmlspecialchars($empleado['RFC']) . "</td>";
@@ -56,6 +58,8 @@ require "layout/cons/services_cons.php";
             <form action="layout/cons/insertar.php" method="POST" class="alta-form">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" id="nombre" required>
+                <label for="apellido">Apellido:</label>
+                <input type="text" name="apellido" id="apellido" required>
                 <label for="correo">Correo:</label>
                 <input type="email" name="correo" id="correo" required>
                 <label for="telefono">Telefono:</label>

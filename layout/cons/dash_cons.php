@@ -1,6 +1,6 @@
 <?php 
 
-//CONSULTAS EN DASHBOARD.PHP
+//CONSULTAS EMPLEADO EN DASHBOARD.PHP
 $sql = "SELECT 
 u.IDUsuario, 
 u.Nombre, 

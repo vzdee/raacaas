@@ -36,7 +36,7 @@ $rol = $_SESSION["TipoUsuario"];
 // Función para verificar acceso según roles permitidos
 function verificarAcceso($rolesPermitidos) {
     if (!in_array($_SESSION["TipoUsuario"], $rolesPermitidos)) {
-        header("Location: acceso_denegado.php");
+        header("Location: layout/partials/denied_access.php");
         exit();
     }
 }

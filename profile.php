@@ -22,7 +22,7 @@ require_once "layout/auths/session_check.php"
         </div>
 
         <div class="profile-content">
-            <form action="layout/auths/update.php" method="post">
+            <form action="layout/auths/update_profile.php" method="post">
                 <div class="form-group">
                     <label class="label-input">Nombre:</label>
                     <input type="text" name="nombre" class="input-field" value="<?= htmlspecialchars($usuario['Nombre']) ?>" required>
