@@ -55,7 +55,7 @@ require "layout/cons/dash_cons.php";
 
         <div class="register-alta">
             <h3 class="alta-title">Alta de Empleados</h3>
-            <form action="layout/cons/insertar.php" method="POST" class="alta-form">
+            <form action="layout/cons/enlist_employees.php" method="POST" class="alta-form">
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" id="nombre" required>
                 <label for="apellido">Apellido:</label>
