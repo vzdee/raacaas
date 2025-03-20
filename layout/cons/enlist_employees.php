@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Insertar empleado en la tabla Empleado
     insertarEmpleado($conn, $idUsuario, $nss, $rfc);
-
-    echo "Empleado registrado exitosamente.";
+    header('Location: ../../enlist.php');
+    exit();
 }
 ?>
