@@ -1,39 +1,27 @@
 <?php
 session_start();
-require "layout/config/database.php"; // Conectar a la base de datos
+require "layout/config/database.php";
 
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION["IDUsuario"])) {
-    header("Location: login.php");
-    exit();
+function verificarSesion() {
+    if (!isset($_SESSION["IDUsuario"])) {
+        header("Location: login.php");
+        exit();
+    }
+    return $_SESSION["IDUsuario"];
 }
 
-$IDCuenta = $_SESSION["IDUsuario"];
-
-// Obtener todos los datos del usuario desde la BD
-$sql = "SELECT usuario.IDUsuario, usuario.Nombre, usuario.Apellido, usuario.Correo, usuario.Telefono, usuario.TipoUsuario,
-               empleado.NSS, empleado.RFC
-        FROM usuario
-        LEFT JOIN empleado ON usuario.IDUsuario = empleado.IDEmpleado
-        WHERE usuario.IDUsuario = :id";
-
-$stmt = $conn->prepare($sql);
-$stmt->bindParam(':id', $IDCuenta);
-$stmt->execute();
-$usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
-// Si el usuario no existe, redirigir a login
-if (!$usuario) {
-    session_destroy();
-    header("Location: login.php");
-    exit();
+function obtenerDatosUsuario($conn, $IDCuenta) {
+    $sql = "SELECT usuario.IDUsuario, usuario.Nombre, usuario.Apellido, usuario.Correo, usuario.Telefono, usuario.TipoUsuario,
+                   empleado.NSS, empleado.RFC
+            FROM usuario
+            LEFT JOIN empleado ON usuario.IDUsuario = empleado.IDEmpleado
+            WHERE usuario.IDUsuario = :id";
+    $stmt = $conn->prepare($sql);
+    $stmt->bindParam(':id', $IDCuenta);
+    $stmt->execute();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Obtener el rol del usuario
-$_SESSION["TipoUsuario"] = $usuario["TipoUsuario"];
-$rol = $_SESSION["TipoUsuario"];
-
-// Función para verificar acceso según roles permitidos
 function verificarAcceso($rolesPermitidos) {
     if (!in_array($_SESSION["TipoUsuario"], $rolesPermitidos)) {
         header("Location: layout/partials/denied_access.php");
@@ -41,4 +29,15 @@ function verificarAcceso($rolesPermitidos) {
     }
 }
 
+$IDCuenta = verificarSesion();
+$usuario = obtenerDatosUsuario($conn, $IDCuenta);
+
+if (!$usuario) {
+    session_destroy();
+    header("Location: ../../login.php");
+    exit();
+}
+
+$_SESSION["TipoUsuario"] = $usuario["TipoUsuario"];
+$rol = $_SESSION["TipoUsuario"];
 ?>
