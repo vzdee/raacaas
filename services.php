@@ -13,7 +13,7 @@ require 'layout/cons/services_cons.php'
     <title>Mis Servicios</title>
 </head>
 <body class="mis-servicios-page">
-    <h2>Bienvenido, <?php echo $_SESSION["Nombre"]; ?></h2>
+    <h2>Bienvenido, <?php echo $_SESSION["Nombre"] . ' ' . $usuario['Apellido']; ?></h2>
     <h3>Mis Servicios</h3>
     <table>
         <thead>
