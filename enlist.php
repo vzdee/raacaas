@@ -36,11 +36,11 @@ require "layout/cons/dash_cons.php";
                         <?php
                         foreach ($empleados as $empleado) {
                             echo "<tr>";
-                            echo "<td>" . htmlspecialchars($empleado['IDEmpleado']) . "</td>";
+                            echo "<td>" . htmlspecialchars($empleado['IDUsuario']) . "</td>";
                             echo "<td>" . htmlspecialchars($empleado['Nombre']) . "</td>";
                             echo "<td>" . htmlspecialchars($empleado['Apellido']) . "</td>";
                             echo "<td>" . htmlspecialchars($empleado['Correo']) . "</td>";
-                            echo "<td>" . htmlspecialchars($empleado['NumeroTel']) . "</td>";
+                            echo "<td>" . htmlspecialchars($empleado['Telefono']) . "</td>";
                             echo "<td>" . htmlspecialchars($empleado['RFC']) . "</td>";
                             echo "<td>" . htmlspecialchars($empleado['FechaRegistro']) . "</td>";
                             echo "</tr>";
@@ -66,6 +66,8 @@ require "layout/cons/dash_cons.php";
                 <input type="tel" name="telefono" id="telefono" required>
                 <label for="rfc">RFC:</label>
                 <input type="text" name="rfc" id="rfc" required>
+                <label for="nss">NSS:</label>
+                <input type="text" name="nss" id="nss">
                 <input type="submit" value="Registrar Empleado" class="btn-alta">
             </form>
         </div>
